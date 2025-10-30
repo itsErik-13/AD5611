@@ -11,6 +11,14 @@ AD5611::AD5611(int syncPin) {
     _csPin = syncPin;
 }
 
+/**
+ * @brief Initializes the AD5611 Digital-to-Analog Converter (DAC).
+ *
+ * This function sets up the necessary pins and communication protocols for the AD5611.
+ * It configures the Chip Select (CS) pin as an output and sets it to a HIGH state
+ * (inactive) to prepare for SPI communication. It then initializes the SPI bus.
+ * This function should be called once in the `setup()` routine of an Arduino sketch.
+ */
 void AD5611::begin() {
     pinMode(_csPin, OUTPUT);
     digitalWrite(_csPin, HIGH); 
@@ -21,7 +29,7 @@ void AD5611::begin() {
 /**
  * @brief Writes a digital value to the AD5611 Digital-to-Analog Converter (DAC).
  *
- * This function takes a 12-bit digital value and sends it to the AD5611 DAC
+ * This function takes a 10-bit digital value and sends it to the AD5611 DAC
  * via SPI. It first checks if the provided value is within the DAC's
  * configured resolution. If valid, it constructs the command byte by
  * combining the DAC's normal operating mode with the input value,
