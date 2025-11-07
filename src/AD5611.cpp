@@ -19,11 +19,18 @@ AD5611::AD5611(int syncPin) {
  * (inactive) to prepare for SPI communication. It then initializes the SPI bus.
  * This function should be called once in the `setup()` routine of an Arduino sketch.
  */
-void AD5611::begin() {
+bool AD5611::begin() {
     pinMode(_csPin, OUTPUT);
     digitalWrite(_csPin, HIGH); 
 
-    SPI.begin(); 
+    SPI.begin();
+    
+    // Verificar que el pin CS está configurado correctamente
+    if (digitalRead(_csPin) != HIGH) {
+        return false;
+    }
+
+    return true;
 }
 
 /**

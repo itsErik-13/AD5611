@@ -24,7 +24,7 @@ public:
     
     AD5611(int syncPin);
     
-    void begin();
+    bool begin();
 
     int writeValue(uint16_t value);
 
